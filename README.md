@@ -6,18 +6,11 @@ A personal cybersecurity portfolio showcasing CTF writeups, research, and hands-
 ##  Features
 
 - CTF writeups (Markdown-based)
-- Clean hacker-style UI
+- Clean UI
 - Dark/Light mode toggle
 - Static site (GitHub Pages)
 - Easy content management via folders
 
-
-##  Adding Writeups
-
-1. Create a folder inside `content/writeups/`
-2. Add `writeup.md`
-3. Add images in the same folder  
-4. Push → it appears on the site
 
 ##  Tech Stack
 
