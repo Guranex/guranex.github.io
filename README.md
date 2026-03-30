@@ -3,7 +3,7 @@
 
 A personal cybersecurity portfolio showcasing CTF writeups, research, and hands-on learning.
 
-## 🚀 Features
+##  Features
 
 - CTF writeups (Markdown-based)
 - Clean hacker-style UI
@@ -11,22 +11,8 @@ A personal cybersecurity portfolio showcasing CTF writeups, research, and hands-
 - Static site (GitHub Pages)
 - Easy content management via folders
 
-## 📁 Structure
 
-```
-
-content/
-├── writeups/
-│   └── CTF_NAME-CHALLENGE_NAME/
-│        ├── writeup.md
-│        └── images
-└── extra/
-└── POST_NAME/
-└── post.md
-
-```
-
-## ✍️ Adding Writeups
+##  Adding Writeups
 
 1. Create a folder inside `content/writeups/`
 2. Add `writeup.md`
@@ -39,9 +25,9 @@ content/
 - Markdown rendering
 - GitHub Pages (static hosting)
 
-## 🌐 Live Site
+##  Live Site
 
-👉 https://v4rr10r.github.io/portfolio/
+ https://v4rr10r.github.io/portfolio/
 
 ---
 
