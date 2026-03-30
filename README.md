@@ -19,7 +19,7 @@ A personal cybersecurity portfolio showcasing CTF writeups, research, and hands-
 3. Add images in the same folder  
 4. Push → it appears on the site
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 - Vite + React
 - Markdown rendering
