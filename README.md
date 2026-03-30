@@ -1,4 +1,4 @@
-```markdown
+
 # W4RR1OR Portfolio
 
 A personal cybersecurity portfolio showcasing CTF writeups, research, and hands-on learning.
@@ -46,4 +46,4 @@ content/
 ---
 
 > Built for learning, documenting, and sharing cybersecurity knowledge.
-```
+
