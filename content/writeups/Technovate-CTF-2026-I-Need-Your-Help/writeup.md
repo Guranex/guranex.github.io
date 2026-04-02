@@ -3,10 +3,8 @@ title: I Need Your Help
 ctf: Technovate CTF 2026
 date: 2026-04-02
 tags:
-
-* OSINT
-  summary: Tracked a suspicious digital identity across multiple platforms (Twitter → Google Reviews → Instagram → LinkedIn → GitHub) and decoded a Vigenère cipher using the provided key to recover the final flag.
-
+  -  OSINT
+summary: Tracked a suspicious digital identity across multiple platforms (Twitter → Google Reviews → Instagram → LinkedIn → GitHub) and decoded a Vigenère cipher using the provided key to recover the final flag.
 ---
 
 #  I Need Your Help — Writeup
