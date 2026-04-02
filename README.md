@@ -20,7 +20,7 @@ A personal cybersecurity portfolio showcasing CTF writeups, research, and hands-
 
 ##  Live Site
 
- https://v4rr10r.github.io/portfolio/
+ https://v4rr10r.github.io
 
 ---
 
