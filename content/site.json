@@ -1,6 +1,6 @@
 {
   "name": "K3ysta1",
-  "tagline": "Cybersecurity, AI Agent, and Full-Stack Notes",
+  "tagline": "Cybersecurity, AI Agent, and Development Notes",
   "intro": {
     "headline": "Hi, I'm K3ysta1.",
     "description": "I focus on cybersecurity, AI Agent exploration, and front-end and back-end development.",
@@ -26,7 +26,7 @@
       "AI Agent",
       "Front-End Development",
       "Back-End Development",
-      "Technical Writing"
+      "Life Recording and Note-Taking"
     ]
   },
   "tools": [
@@ -34,7 +34,7 @@
     "Git / GitHub",
     "Burp Suite",
     "Wireshark",
-    "Postman",
+    "Apifox",
     "Docker",
     "Linux",
     "Node.js",
@@ -42,52 +42,37 @@
   ],
   "experience": [
     {
-      "organization": "Your University / Team",
-      "role": "Cybersecurity and Development Learner",
-      "period": "Add your dates"
+      "organization": "GDPU",
+      "role": "CS",
+      "period": "2025 - Present"
     },
     {
-      "organization": "Your Club / Community",
+      "organization": "网安小黑子",
       "role": "Builder / Contributor",
-      "period": "Add your dates"
+      "period": "2025 - Present"
     }
   ],
   "achievements": [
     {
-      "title": "Launch the first version of this blog",
-      "organization": "GitHub Pages",
+      "title": "Got the first CISCN Prize",
+      "organization": "网安小黑子",
       "rank": "Milestone",
-      "date": "2026"
-    },
-    {
-      "title": "Document cybersecurity and AI Agent projects",
-      "organization": "Posts",
-      "rank": "Milestone",
-      "date": "2026"
-    },
-    {
-      "title": "Keep shipping notes on development and security",
-      "organization": "Learning",
-      "rank": "Workflow",
       "date": "2026"
     }
   ],
   "links": [
     {
       "label": "GitHub",
-      "url": "https://github.com/your-username"
+      "url": "https://github.com/Guranex"
     },
-    {
-      "label": "LinkedIn",
-      "url": "https://www.linkedin.com/in/your-profile"
-    },
+    
     {
       "label": "X",
-      "url": "https://x.com/your-handle"
+      "url": "https://x.com/Awhitedress1"
     },
     {
       "label": "Email",
-      "url": "mailto:you@example.com"
+      "url": "mailto:vincentchen066@gmail.com"
     }
   ]
 }
