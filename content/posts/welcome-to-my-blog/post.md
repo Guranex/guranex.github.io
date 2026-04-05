@@ -1,43 +1,45 @@
 ---
-title: Welcome to My Blog
+title: Sa-Token 跨域配置
 category: Blog
 date: 2026-04-06
 tags:
-  - introduction
-  - github-pages
-  - personal-site
-summary: A short launch post explaining what this blog is for and how I plan to use it.
+  - tutorial
+  - Java
+  - Sa-Token
+summary: A short launch post about Configuration of Sa-Token
 ---
 
-# Welcome to my blog
+## Sa-Token 配置全局跨域CORS
+```java
+@Configuration
+public class CosConfig {
+    /**
+     * CORS 跨域处理策略
+     */
+    @Bean
+    public SaCorsHandleFunction corsHandle() {
+        return (req, res, sto) -> {
+            res.
+                    // 允许指定域访问跨域资源
+                     setHeader("Access-Control-Allow-Origin", "*")
+                    // 允许所有请求方式
+                    .setHeader("Access-Control-Allow-Methods", "POST, GET,PUT, OPTIONS, DELETE")
+                    // 有效时间
+                    .setHeader("Access-Control-Max-Age", "3600")
+                    // 允许的header参数
+                    .setHeader("Access-Control-Allow-Headers", "*");
 
-This site is my personal space for technical writing, study logs, and project updates.
+            // 如果是预检请求，则立即返回到前端
+            SaRouter.match(SaHttpMethod.OPTIONS)
+                    .free(r -> System.out.println("--------OPTIONS预检请求，不做处理"))
+                    .back();
+        };
+    }
+}
+```
 
-I built it from a markdown-driven template so that publishing stays simple:
+跨域问题不是后端拒绝，而是返回内容，浏览器主动限制前端访问数据。
+**需要配置响应头告诉能允许访问资源**。
 
-1. Create a folder under `content/posts`
-2. Add a `post.md`
-3. Push to GitHub
-4. Let GitHub Pages rebuild the site
 
-## What I plan to publish here
 
-- Security practice notes
-- CTF writeups
-- Project retrospectives
-- Useful command references
-- Small experiments that are worth documenting
-
-## Why keep a blog
-
-Writing helps me turn scattered learning into something I can review later. It also makes it easier to share progress with other people.
-
-## Next steps
-
-The first things I should replace in this template are:
-
-- My name and social links in `content/site.json`
-- This sample post
-- The example notes under `content/notes`
-
-If you are reading this on GitHub Pages, the deployment pipeline is already working.
