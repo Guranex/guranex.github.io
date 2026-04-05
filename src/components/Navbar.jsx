@@ -3,18 +3,18 @@ import ThemeToggle from './ThemeToggle.jsx'
 
 const links = [
   { label: 'Home', to: '/' },
-  { label: 'Writeups', to: '/writeups' },
-  { label: 'Extra', to: '/extra' },
+  { label: 'Posts', to: '/posts' },
+  { label: 'Notes', to: '/notes' },
 ]
 
-function Navbar({ siteName }) {
+function Navbar({ siteConfig }) {
   return (
     <header className="site-header">
       <div className="brand-lockup">
         <span className="brand-glyph">[::]</span>
         <div>
-          <p className="brand-name">{siteName}</p>
-          <p className="brand-subtitle">Cybersecurity Enthusiast</p>
+          <p className="brand-name">{siteConfig.name}</p>
+          <p className="brand-subtitle">{siteConfig.tagline}</p>
         </div>
       </div>
       <nav className="nav-links" aria-label="Primary">

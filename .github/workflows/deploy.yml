@@ -1,4 +1,4 @@
-name: Deploy W4RR1OR Site
+name: Deploy Personal Blog
 
 on:
   push:

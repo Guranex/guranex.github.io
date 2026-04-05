@@ -8,10 +8,10 @@ function ExtraDetailPage({ posts }) {
   if (!post) {
     return (
       <section className="panel empty-state">
-        <h1>Post not found</h1>
-        <p>The markdown file for this extra note was not found in the current build.</p>
-        <Link className="inline-cta" to="/extra">
-          Back to extra
+        <h1>Note not found</h1>
+        <p>The markdown file for this note was not found in the current build.</p>
+        <Link className="inline-cta" to="/notes">
+          Back to notes
         </Link>
       </section>
     )
@@ -19,8 +19,8 @@ function ExtraDetailPage({ posts }) {
 
   return (
     <div className="page-stack">
-      <Link className="back-link" to="/extra">
-        {'<-'} Back to extra
+      <Link className="back-link" to="/notes">
+        {'<-'} Back to notes
       </Link>
       <section className="panel detail-hero">
         <p className="eyebrow">{post.collection.toUpperCase()}</p>

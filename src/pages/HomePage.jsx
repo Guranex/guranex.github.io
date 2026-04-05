@@ -1,17 +1,17 @@
 import { Link } from 'react-router-dom'
 
-function HomePage({ extraPosts, siteConfig, writeups }) {
+function HomePage({ notes, posts, siteConfig }) {
   const stats = [
     {
-      label: 'Tracked writeups',
-      value: String(writeups.length).padStart(2, '0'),
+      label: 'Published posts',
+      value: String(posts.length).padStart(2, '0'),
     },
     {
-      label: 'Research notes',
-      value: String(extraPosts.length).padStart(2, '0'),
+      label: 'Reusable notes',
+      value: String(notes.length).padStart(2, '0'),
     },
     {
-      label: 'Achievements',
+      label: 'Milestones',
       value: String(siteConfig.achievements.length).padStart(2, '0'),
     },
   ]
@@ -46,13 +46,15 @@ function HomePage({ extraPosts, siteConfig, writeups }) {
             <span />
           </div>
           <div className="terminal-content">
-            <p className="terminal-line terminal-muted">w4rr1or@notebook:~$ ./focus.sh</p>
+            <p className="terminal-line terminal-muted">k3ysta1@blog:~$ cat focus.txt</p>
             {siteConfig.focusTracks.map((track) => (
               <p className="terminal-line" key={track}>
                 <span className="terminal-prompt">&gt;</span> {track}
               </p>
             ))}
-            <p className="terminal-line terminal-muted">status: building, breaking, learning</p>
+            <p className="terminal-line terminal-muted">
+              status: shipping notes, projects, and lessons learned
+            </p>
           </div>
         </div>
       </section>
@@ -68,22 +70,22 @@ function HomePage({ extraPosts, siteConfig, writeups }) {
 
       <section className="content-grid content-grid-wide">
         <div className="panel section-panel">
-          <p className="section-kicker">About Me</p>
-          <h2>Hands on learner exploring systems at a deeper level.</h2>
+          <p className="section-kicker">About</p>
+          <h2>A compact home for technical writing and ongoing learning.</h2>
           <p className="section-copy">{siteConfig.about}</p>
           <div className="cta-row">
-            <Link className="inline-cta" to="/writeups">
-              Browse writeups
+            <Link className="inline-cta" to="/posts">
+              Browse posts
             </Link>
-            <Link className="inline-cta" to="/extra">
-              Read extra notes
+            <Link className="inline-cta" to="/notes">
+              Open notes
             </Link>
           </div>
         </div>
 
         <div className="panel section-panel">
           <p className="section-kicker">Experience</p>
-          <h2>Communities & teams.</h2>
+          <h2>Teams, schools, and communities.</h2>
           <div className="timeline-list">
             {siteConfig.experience.map((entry) => (
               <div className="timeline-item" key={`${entry.organization}-${entry.role}`}>
@@ -113,7 +115,7 @@ function HomePage({ extraPosts, siteConfig, writeups }) {
 
         <div className="panel section-panel">
           <p className="section-kicker">Core Skills</p>
-          <h2>Core Areas.</h2>
+          <h2>Areas I am actively developing.</h2>
           <div className="chip-grid">
             {siteConfig.skills.core.map((skill) => (
               <span className="chip" key={skill}>
@@ -126,7 +128,7 @@ function HomePage({ extraPosts, siteConfig, writeups }) {
 
       <section className="panel section-panel">
         <p className="section-kicker">Tools</p>
-        <h2>My Toolkit.</h2>
+        <h2>Everyday toolkit.</h2>
         <div className="tool-grid">
           {siteConfig.tools.map((tool) => (
             <span className="tool-pill" key={tool}>
@@ -137,18 +139,18 @@ function HomePage({ extraPosts, siteConfig, writeups }) {
       </section>
 
       <section className="panel section-panel">
-        <p className="section-kicker">Achievements</p>
-        <h2>Recent CTF results and placements.</h2>
+        <p className="section-kicker">Milestones</p>
+        <h2>Things worth shipping next.</h2>
         <div className="achievement-list">
           {siteConfig.achievements.map((achievement, index) => (
-            <div className="achievement-item" key={`${achievement.title}-${achievement.rank}`}>
+            <div className="achievement-item" key={`${achievement.title}-${achievement.date}`}>
               <span className="achievement-index">{String(index + 1).padStart(2, '0')}</span>
               <div className="achievement-copy">
                 <p className="achievement-title">{achievement.title}</p>
                 <p className="achievement-meta">{achievement.organization}</p>
               </div>
               <div className="achievement-rank-block">
-                <span className="achievement-rank">Rank {achievement.rank}</span>
+                <span className="achievement-rank">{achievement.rank}</span>
                 <span className="achievement-date">{achievement.date}</span>
               </div>
             </div>

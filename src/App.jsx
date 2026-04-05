@@ -1,7 +1,7 @@
 import { HashRouter, Route, Routes } from 'react-router-dom'
 import Layout from './components/Layout.jsx'
 import { ThemeProvider } from './context/ThemeContext.jsx'
-import { extraPosts, siteConfig, writeups } from './data/content.js'
+import { notes, posts, siteConfig } from './data/content.js'
 import ExtraDetailPage from './pages/ExtraDetailPage.jsx'
 import ExtraPage from './pages/ExtraPage.jsx'
 import HomePage from './pages/HomePage.jsx'
@@ -14,24 +14,15 @@ function App() {
     <ThemeProvider>
       <HashRouter>
         <Routes>
-          <Route element={<Layout siteName={siteConfig.name} />}>
+          <Route element={<Layout siteConfig={siteConfig} />}>
             <Route
               index
-              element={
-                <HomePage
-                  extraPosts={extraPosts}
-                  siteConfig={siteConfig}
-                  writeups={writeups}
-                />
-              }
+              element={<HomePage notes={notes} posts={posts} siteConfig={siteConfig} />}
             />
-            <Route path="writeups" element={<WriteupsPage writeups={writeups} />} />
-            <Route
-              path="writeups/:slug"
-              element={<WriteupDetailPage writeups={writeups} />}
-            />
-            <Route path="extra" element={<ExtraPage posts={extraPosts} />} />
-            <Route path="extra/:slug" element={<ExtraDetailPage posts={extraPosts} />} />
+            <Route path="posts" element={<WriteupsPage posts={posts} />} />
+            <Route path="posts/:slug" element={<WriteupDetailPage posts={posts} />} />
+            <Route path="notes" element={<ExtraPage posts={notes} />} />
+            <Route path="notes/:slug" element={<ExtraDetailPage posts={notes} />} />
             <Route path="*" element={<NotFoundPage />} />
           </Route>
         </Routes>

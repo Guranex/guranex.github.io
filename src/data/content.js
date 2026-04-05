@@ -3,44 +3,33 @@ import {
   createExcerpt,
   formatDate,
   normalizeTags,
-  parseFolderLabel,
   parseMarkdownDocument,
   prettifySegment,
   toTimestamp,
 } from '../lib/frontmatter.js'
 
-const WRITEUP_FILES = import.meta.glob('../../content/writeups/**/writeup.md', {
+const POST_FILES = import.meta.glob('../../content/posts/**/post.md', {
   eager: true,
   import: 'default',
   query: '?raw',
 })
 
-const EXTRA_FILES = {
-  ...import.meta.glob('../../content/extra/**/post.md', {
-    eager: true,
-    import: 'default',
-    query: '?raw',
-  }),
-  ...import.meta.glob('../../content/labs/**/post.md', {
-    eager: true,
-    import: 'default',
-    query: '?raw',
-  }),
-}
-
-const ASSET_FILES = import.meta.glob('../../content/**/*.{png,jpg,jpeg,gif,svg,webp,avif}', {
+const NOTE_FILES = import.meta.glob('../../content/notes/**/note.md', {
   eager: true,
   import: 'default',
+  query: '?raw',
 })
 
-const FIXED_WRITEUP_TAGS = [
-  'Reverse Engineering',
-  'Binary Exploitation',
-  'Web Exploitation',
-  'OSINT',
-  'Forensics',
-  'Cryptography',
-]
+const ASSET_FILES = {
+  ...import.meta.glob('../../content/posts/**/*.{png,jpg,jpeg,gif,svg,webp,avif}', {
+    eager: true,
+    import: 'default',
+  }),
+  ...import.meta.glob('../../content/notes/**/*.{png,jpg,jpeg,gif,svg,webp,avif}', {
+    eager: true,
+    import: 'default',
+  }),
+}
 
 const assetMap = Object.fromEntries(
   Object.entries(ASSET_FILES).map(([assetPath, resolvedUrl]) => [
@@ -51,21 +40,19 @@ const assetMap = Object.fromEntries(
 
 export { siteConfig }
 
-export const writeups = Object.entries(WRITEUP_FILES)
-  .map(([filePath, rawDocument]) => createWriteupEntry(filePath, rawDocument))
+export const posts = Object.entries(POST_FILES)
+  .map(([filePath, rawDocument]) => createPostEntry(filePath, rawDocument))
   .sort((left, right) => right.sortTimestamp - left.sortTimestamp)
 
-export const extraPosts = Object.entries(EXTRA_FILES)
-  .map(([filePath, rawDocument]) => createExtraEntry(filePath, rawDocument))
+export const notes = Object.entries(NOTE_FILES)
+  .map(([filePath, rawDocument]) => createNoteEntry(filePath, rawDocument))
   .sort((left, right) => right.sortTimestamp - left.sortTimestamp)
 
-export const writeupTagOptions = orderTags(
-  Array.from(new Set([...FIXED_WRITEUP_TAGS, ...writeups.flatMap((item) => item.tags)])),
+export const postTagOptions = orderStrings(Array.from(new Set(posts.flatMap((item) => item.tags))))
+
+export const postCategoryOptions = orderStrings(
+  Array.from(new Set(posts.map((item) => item.category))),
 )
-
-export const writeupCtfOptions = Array.from(
-  new Set(writeups.map((item) => item.ctfName)),
-).sort((left, right) => left.localeCompare(right))
 
 export function resolveContentAsset(sourcePath, baseDirectory) {
   if (!sourcePath) {
@@ -96,20 +83,19 @@ export function resolveContentAsset(sourcePath, baseDirectory) {
   return trimmedPath
 }
 
-function createWriteupEntry(filePath, rawDocument) {
+function createPostEntry(filePath, rawDocument) {
   const folderName = filePath.split('/').at(-2)
-  const { challengeName, ctfName } = parseFolderLabel(folderName)
   const { content, data } = parseMarkdownDocument(rawDocument)
   const baseDirectory = toBaseDirectory(filePath)
+  const title = data.title || prettifySegment(folderName)
+  const category = data.category || 'General'
   const tags = normalizeTags(data.tags)
-  const title = data.title || challengeName
   const date = data.date || ''
 
   return {
     baseDirectory,
-    challengeName: data.challenge || title,
+    category,
     content,
-    ctfName: data.ctf || ctfName,
     date,
     displayDate: formatDate(date),
     folderName,
@@ -121,16 +107,15 @@ function createWriteupEntry(filePath, rawDocument) {
   }
 }
 
-function createExtraEntry(filePath, rawDocument) {
+function createNoteEntry(filePath, rawDocument) {
   const folderName = filePath.split('/').at(-2)
   const { content, data } = parseMarkdownDocument(rawDocument)
   const title = data.title || prettifySegment(folderName)
   const date = data.date || ''
-  const collection = filePath.includes('/labs/') ? 'labs' : 'extra'
 
   return {
     baseDirectory: toBaseDirectory(filePath),
-    collection,
+    collection: 'notes',
     content,
     date,
     description: data.description || data.summary || createExcerpt(content),
@@ -143,19 +128,8 @@ function createExtraEntry(filePath, rawDocument) {
   }
 }
 
-function orderTags(tags) {
-  const priority = new Map(FIXED_WRITEUP_TAGS.map((tag, index) => [tag, index]))
-
-  return [...tags].sort((left, right) => {
-    const leftPriority = priority.has(left) ? priority.get(left) : Number.POSITIVE_INFINITY
-    const rightPriority = priority.has(right) ? priority.get(right) : Number.POSITIVE_INFINITY
-
-    if (leftPriority !== rightPriority) {
-      return leftPriority - rightPriority
-    }
-
-    return left.localeCompare(right)
-  })
+function orderStrings(values) {
+  return [...values].sort((left, right) => left.localeCompare(right))
 }
 
 function toBaseDirectory(filePath) {

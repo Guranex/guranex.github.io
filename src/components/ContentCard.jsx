@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom'
 
-function ContentCard({ item, to, variant = 'writeup' }) {
-  const label = variant === 'writeup' ? `CTF // ${item.ctfName}` : `${item.collection.toUpperCase()} // Research note`
-  const summary = variant === 'writeup' ? item.summary : item.description
+function ContentCard({ item, to, variant = 'post' }) {
+  const label = variant === 'post' ? `${item.category} // Article` : 'NOTES // Quick reference'
+  const summary = variant === 'post' ? item.summary : item.description
 
   return (
     <Link className="content-card panel" to={to}>
       <p className="card-kicker">{label}</p>
-      <h3>{variant === 'writeup' ? item.challengeName : item.title}</h3>
+      <h3>{item.title}</h3>
       <p className="card-copy">{summary}</p>
       <div className="card-chip-row">
         {item.tags.length ? (
@@ -22,7 +22,7 @@ function ContentCard({ item, to, variant = 'writeup' }) {
       </div>
       <div className="card-meta-row">
         <span>{item.displayDate}</span>
-        <span>{variant === 'writeup' ? item.title : item.folderName}</span>
+        <span>{item.folderName}</span>
       </div>
     </Link>
   )
