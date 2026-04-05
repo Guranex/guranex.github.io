@@ -14,10 +14,15 @@
   --border-strong: rgba(88, 166, 255, 0.28);
   --shadow: 0 22px 60px rgba(0, 0, 0, 0.35);
   --hero-glow: rgba(88, 166, 255, 0.16);
+  --cjk-sans:
+    'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC',
+    'Source Han Sans SC', sans-serif;
+  --cjk-serif:
+    'STSong', 'Songti SC', 'Noto Serif CJK SC', 'Source Han Serif SC', serif;
   --mono: 'IBM Plex Mono', monospace;
   --heading-font: 'Space Grotesk', sans-serif;
   --max-width: 1180px;
-  font-family: var(--mono);
+  font-family: var(--mono), var(--cjk-sans);
   font-synthesis: none;
   font-weight: 400;
   line-height: 1.6;
@@ -327,7 +332,7 @@ select {
 .content-card h3 {
   margin: 0;
   color: var(--heading);
-  font-family: var(--heading-font);
+  font-family: var(--heading-font), var(--cjk-sans);
   line-height: 1.05;
   letter-spacing: -0.04em;
 }
@@ -357,6 +362,7 @@ select {
   margin: 0;
   color: var(--text);
   font-size: 0.98rem;
+  font-family: var(--mono), var(--cjk-sans);
 }
 
 .lead-copy,
@@ -680,6 +686,18 @@ select {
 .markdown-body pre,
 .markdown-body table {
   margin: 0 0 1rem;
+}
+
+.markdown-body {
+  font-family: var(--mono), var(--cjk-sans);
+}
+
+.markdown-body :where(h1, h2, h3, h4) {
+  font-family: var(--heading-font), var(--cjk-sans);
+}
+
+.markdown-body :where(p, li, blockquote, td, th) {
+  line-height: 1.8;
 }
 
 .markdown-body ul,
